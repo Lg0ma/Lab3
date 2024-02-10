@@ -29,6 +29,10 @@ class bishop extends chessPiece {
         this.row = y_coord;
     }
 
+    public chess_piece_type getType(){
+        return piece_name;
+    }
+    
     // getter method for color
     public chess_piece_color getColor() {
         return color;

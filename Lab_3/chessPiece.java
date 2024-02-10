@@ -23,6 +23,10 @@ public abstract class chessPiece {
         this.column = column;
         this.row = row;
     }
+
+    public chess_piece_type getType(){
+        return piece_name;
+    }
     
     // method to get color of object
     public chess_piece_color getColor() {
