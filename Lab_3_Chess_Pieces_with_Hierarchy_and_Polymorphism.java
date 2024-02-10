@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 // main class
-public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism extends chessPiece{
-    private static Scanner scnr = new Scanner(System.in);
+public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism{
+private static Scanner scnr = new Scanner(System.in);
 
 
     // everyone used this
@@ -55,6 +55,7 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism extends chessPie
 
 
     }
+
 
     // NAME
     // 
