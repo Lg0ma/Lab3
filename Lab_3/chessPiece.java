@@ -45,7 +45,7 @@ public abstract class chessPiece {
         switch (type) {
             // type bishop
             case BISHOP:
-                //return new bishop(type, color, column, row);
+                return new bishop(type, color, column, row);
             // type king
             case KING:
                 return new king(type, color, column, row);

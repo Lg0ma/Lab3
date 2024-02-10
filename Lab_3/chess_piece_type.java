@@ -5,6 +5,6 @@ public enum chess_piece_type {
     KNIGHT,
     PAWN,
     QUEEN,
-    ROOK,
+    ROOK, length,
 }
 

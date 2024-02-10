@@ -8,9 +8,11 @@ private static Scanner scnr = new Scanner(System.in);
 
     // everyone used this
     public static void main(String[] args) {
-        chess_piece_type [] type = new chess_piece_type[16];
+        chess_piece_type [] pieceTypes = prompt();
+        chessPiece [] chessPieces;
+        chessPieces = secondPrompt(pieceTypes);
+        move(chessPieces);
 
-        type = prompt();
 
         // // create a pawn object
         // chessPiece myPawn = new pawn(chess_piece_type.PAWN, chess_piece_color.BLACK, chess_piece_columns.A, 7);
@@ -60,7 +62,7 @@ private static Scanner scnr = new Scanner(System.in);
         chess_piece_type [] type = new chess_piece_type[6];
         String typeInput = "";
         int i = 0; //counter for array 
-        while(!typeInput.equalsIgnoreCase("stop") || i < 6){ //Loop to get input into an array (empty object)
+        while(!typeInput.equalsIgnoreCase("stop") && i < 6){ //Loop to get input into an array (empty object)
             try{
                 System.out.println("Select a chess piece: PAWN, ROOK, BISHOP, KNIGHT, QUEEN, KING \n\"Stop\" to continue to chess piece attributes");
                 //Changed the prompt from what I understood on the instructions
@@ -81,6 +83,55 @@ private static Scanner scnr = new Scanner(System.in);
     }
 
 
-    // NAME
+    // Luis Gomez
     // 
+    public static chessPiece[] secondPrompt(chess_piece_type [] piece_type){
+        chessPiece [] newChesspieces = new chessPiece[piece_type.length];
+        String [] user_input;
+        String piece_info;
+        int i = 0;
+        while (i < piece_type.length){
+            try{
+            System.out.println("Please input "+ piece_type[i] + "'s Color, Coloumn, and row EX: BLACK, A, 3");
+            piece_info = scnr.nextLine();
+            user_input = piece_info.split(",\\s*");
+            int row = Integer.parseInt(user_input[2]);
+            if(chessboard.withinChessboard((chess_piece_columns.valueOf(user_input[1].toUpperCase())), row) == true){
+                System.out.println("Move is valid ");
+            newChesspieces[i] = chessPiece.create_chess_piece(piece_type[i],(chess_piece_color.valueOf(user_input[0].toUpperCase())),(chess_piece_columns.valueOf(user_input[1].toUpperCase())),row);
+            i++;
+            }
+        }catch(Exception e){
+            System.out.println("Invalid input try again");
+        }
+        }
+        return newChesspieces;
+    }
+
+    //Luis Gomez
+    public static void move(chessPiece [] chessPieces){
+        int i = 0;
+        String [] user_input;
+        String newMove;
+        while(i < chessPieces.length){
+            try{
+            System.out.println("Input new position to Move " + chessPieces[i].getClass() + " to EX: A, 3");
+            newMove = scnr.nextLine();
+            user_input = newMove.split(",\\s*");
+            chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
+            int row = Integer.parseInt(user_input[2]);
+            if(chessPieces[i].verifyTarget(col, row) == true){
+                System.out.println("Piece " + chessPieces[i].getClass() + " was successfuly moved to "+ col + row );
+                i++;
+            }else{
+                System.out.println("Move is invalid ");
+                i++;
+            }
+
+            }catch(Exception e){
+                i++;
+            }
+        }
+    }
+    
 }
