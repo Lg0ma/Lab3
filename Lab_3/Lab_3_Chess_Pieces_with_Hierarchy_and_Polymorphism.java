@@ -1,4 +1,4 @@
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Scanner;
 
 // main class
@@ -30,7 +30,7 @@ private static Scanner scnr = new Scanner(System.in);
                 //Changed the prompt from what I understood on the instructions
                 //Please input what piece you want to create: PAWN, ROOK, BISHOP, KNIGHT, QUEEN, KING
                 typeInput = scnr.nextLine();
-                                
+
                 if (typeInput.equalsIgnoreCase("close")) {
                     System.out.println("Exiting...");
                     System.exit(0);
@@ -39,9 +39,7 @@ private static Scanner scnr = new Scanner(System.in);
                 i++;
             }
             catch(Exception e){
-                if(!e.equals("stop")){
                     System.out.println("Wrong input try again");
-                }
 
             }
         }
