@@ -1,11 +1,3 @@
-// package 
-package Lab_3; // UPDATE
-// import
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_type;
-import Lab_2.Lab_2_Chess_and_Objects;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_color;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_columns;
-
 // ANDRE MELENDEZ
 // king class
 class king extends queen {

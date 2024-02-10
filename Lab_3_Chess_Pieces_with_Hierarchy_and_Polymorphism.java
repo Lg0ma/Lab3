@@ -1,12 +1,7 @@
-// package
-package Lab_3;
-//llll
-// imports
 import java.util.Scanner;
-import java.util.function.Supplier;
 
 // main class
-public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
+public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism extends chessPiece{
     private static Scanner scnr = new Scanner(System.in);
 
 
@@ -63,38 +58,4 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
 
     // NAME
     // 
-
-    // ANDRE MELENDEZ
-    // Enumerated chess piece types method
-    public enum chess_piece_type {
-
-        BISHOP,
-        KING,
-        KNIGHT,
-        PAWN,
-        QUEEN,
-        ROOK,
-    }
-
-    // ANDRE MELENDEZ
-    // Enumerated chess piece colors method
-    public enum chess_piece_color {
-
-        BLACK,
-        WHITE,
-    }
-
-    // ANDRE MELENDEZ
-    // Enumerated chess piece columns method
-    public enum chess_piece_columns {
-
-        A,
-        B,
-        C,
-        D,
-        E,
-        F,
-        G,
-        H,
-    }
 }

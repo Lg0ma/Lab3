@@ -1,10 +1,3 @@
-// package 
-package Lab_3; // UPDATE
-// import
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_type;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_color;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_columns;
-
 // ANDRE MELENDEZ
 // rook class
 class rook extends chessPiece {

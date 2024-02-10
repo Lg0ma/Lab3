@@ -1,8 +1,3 @@
-// package
-package Lab_3;
-// import
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_columns;
-
 public class chessboard {
     // VARS?
     // MANDATORY METHOD

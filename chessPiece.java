@@ -1,10 +1,3 @@
-// package
-package Lab_3;
-
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_type;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_color;
-import Lab_3.Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism.chess_piece_columns;
-
 // an abstract class, base for all other chess piece object classes
 public abstract class chessPiece {
     // initialize private attributes
@@ -52,7 +45,7 @@ public abstract class chessPiece {
         switch (type) {
             // type bishop
             case BISHOP:
-                return new bishop(type, color, column, row);
+                //return new bishop(type, color, column, row);
             // type king
             case KING:
                 return new king(type, color, column, row);
