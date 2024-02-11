@@ -1,4 +1,6 @@
 // import java.util.Arrays;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 // main class
@@ -8,45 +10,45 @@ private static Scanner scnr = new Scanner(System.in);
 
     // everyone used this
     public static void main(String[] args) {
-        chess_piece_type [] pieceTypes = prompt();
-        chessPiece [] chessPieces;
-        chessPieces = secondPrompt(pieceTypes);
-        move(chessPieces);
+        chess_piece_type [] pieceTypes = prompt(); //Array used to store only user piece types
+        chessPiece [] chessPieces; // Array taht will be used to hold ches pieces as objects
+        chessPieces = secondPrompt(pieceTypes); //Updating array with user pieces now as objects
+        move(chessPieces); //
     }
 
     // Ivan Armenta
-    //The user can provide the chess pieces in any order.   
-    //The user should be allowed to select a piece and set its initial position
-    // Works as intender, only problem is when stop is typed, the exception is called
-    //Assumption – you may assume that your user does not repeat a chess piece type.
-    //Only 6 chess pieces, so one per type
     public static chess_piece_type [] prompt() {
-        chess_piece_type [] type = new chess_piece_type[6];
+        chess_piece_type [] type = new chess_piece_type[6]; //enum array used to hold user input
         String typeInput = "";
         int i = 0; //counter for array 
-        while(!typeInput.equalsIgnoreCase("stop") && i < 6){ //Loop to get input into an array (empty object)
+        for(i = 0; !typeInput.equalsIgnoreCase("stop") && i < 6; i++){ //Loop to populate type array
             try{
                 System.out.println("Select a chess piece: PAWN, ROOK, BISHOP, KNIGHT, QUEEN, KING \n\"Stop\" to continue to chess piece attributes");
-                //Changed the prompt from what I understood on the instructions
-                //Please input what piece you want to create: PAWN, ROOK, BISHOP, KNIGHT, QUEEN, KING
-                typeInput = scnr.nextLine();
+                typeInput = scnr.nextLine().toUpperCase(); 
 
-                if (typeInput.equalsIgnoreCase("close")) {
-                    System.out.println("Exiting...");
-                    System.exit(0);
+                type[i] = chess_piece_type.valueOf(typeInput); //Putting user input into enum array
+
+                //Loop to check for duplicates
+                for(int count = 0; count < i; count++) {
+                    if(type[count] == type[i]){
+                        System.out.println("Duplicate");
+                        i--;
+                    }
+                    else{
+                        type[i] = chess_piece_type.valueOf(typeInput);
+                    }
                 }
-                type[i] = chess_piece_type.valueOf(typeInput.toUpperCase());
-                i++;
+            //Exception if user inputs something wrong
             }
             catch(Exception e){
-                    System.out.println("Wrong input try again");
-
+                System.out.println("Wrong input try again");
+                i--;
             }
         }
-        
         return type;
     }
 
+    
 
     // Luis Gomez
     // takes array of type that user input and asks for more info to create the piece
@@ -99,5 +101,7 @@ private static Scanner scnr = new Scanner(System.in);
             }
         }
     }
+
+    
     
 }
