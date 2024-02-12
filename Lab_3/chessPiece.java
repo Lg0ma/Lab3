@@ -1,6 +1,6 @@
 // ANDRE MELENDEZ
-// an abstract class, base for all other chess piece object classes
-public abstract class chessPiece {
+// class, base for all other chess piece object classes
+public class chessPiece {
     // initialize private attributes
     private chess_piece_type piece_name;
     private chess_piece_color color;
@@ -72,7 +72,10 @@ public abstract class chessPiece {
         }
     }
 
-    // abstract method to verify its piece movement
-    public abstract Boolean verifyTarget(chess_piece_columns column, int row);
+    // method to verify its piece movement
+    public Boolean verifyTarget(chess_piece_columns column, int row) {
+        // check if the target position is within the chessboard boundaries
+        return chessboard.withinChessboard(column, row);
+    }
     
 }
