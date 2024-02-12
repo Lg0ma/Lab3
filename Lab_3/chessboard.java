@@ -1,3 +1,4 @@
+// LUIS GOMEZ
 public class chessboard {
     // VARS?
     // MANDATORY METHOD

@@ -1,3 +1,4 @@
+// ANDRE MELENDEZ
 // an abstract class, base for all other chess piece object classes
 public abstract class chessPiece {
     // initialize private attributes
