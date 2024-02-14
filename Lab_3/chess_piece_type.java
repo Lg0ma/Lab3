@@ -1,3 +1,5 @@
+// ANDRE MELENDEZ
+// enumerated chess piece type method
 public enum chess_piece_type {
 
     BISHOP,
@@ -5,6 +7,6 @@ public enum chess_piece_type {
     KNIGHT,
     PAWN,
     QUEEN,
-    ROOK,
+    ROOK, length,
 }
 
