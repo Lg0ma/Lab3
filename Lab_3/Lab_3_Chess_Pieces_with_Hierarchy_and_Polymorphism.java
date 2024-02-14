@@ -86,31 +86,34 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
         int i = 0;
         String[] user_input;
         String newMove;
-        while (i < chessPieces.length) {
-            try {
-                System.out.println("Input new position to Move " + chessPieces[i].getType() + " at "
-                        + chessPieces[i].getColumn() + "," + chessPieces[i].getRow() + " to. EX: A, 3");
-                newMove = scnr.nextLine();
-                // if the usrs input is 'stop' 
-                if (newMove.toUpperCase().equals("STOP")) {
-                    // end the program
-                    System.exit(0);
-                }
-                user_input = newMove.split(",\\s*");
-                chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
-                int row = Integer.parseInt(user_input[1]);
+        System.out.println("Input a new position for the pieces to try to move to. ");
+        newMove = scnr.nextLine();
+        // if the usrs input is 'stop' 
+         if (newMove.toUpperCase().equals("STOP")) {
+              // end the program
+            System.exit(0);
+        }                                                                                         
+        user_input = newMove.split(",\\s*");
+        try {
+            chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
+            int row = Integer.parseInt(user_input[1]);
+            while(i < chessPieces.length){
+                chessPiece currPiece = chessPieces[i];
                 if (chessPieces[i].verifyTarget(col, row) == true) {
-                    System.out.println(
-                            "Piece " + chessPieces[i].getType() + " was successfuly moved to " + col + " " + row);
+                    System.out.println("Piece " + currPiece.getType() + " at " + currPiece.getColumn() + "," + currPiece.getRow() + " was able to move successfully to " + col + "," + row);
                     i++;
-                } else {
-                    System.out.println("Piece " + " was not able to move to " + col + " " + row);
+                    
+                }else{
+                    System.out.println("Piece " + currPiece.getType() + " at " + currPiece.getColumn() + "," + currPiece.getRow() +" was not able to move to " + col + "," + row);
                     i++;
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid input try again");
             }
+
+        } catch (Exception e) {
+
+        }
+        
         }
     }
 
-}
+
