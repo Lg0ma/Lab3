@@ -1,16 +1,17 @@
-// import java.util.Arrays;
-import java.util.Arrays;
+// imports
 import java.util.Scanner;
 
 // main class
 public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
+    // initialize a private Scanner
     private static Scanner scnr = new Scanner(System.in);
-    // hello
 
     // everyone used this
     public static void main(String[] args) {
-        chessPiece [] pieces= prompt(); // array used to store the chess piece objects array returned from the method call
-        move(pieces); // method call to move the chess pieces to a new position
+        // method call to prompt user to make chess pieces
+        chessPiece [] pieces= prompt(); // array used to store the chess piece objects array
+        // method prompt to move the chess pieces to a new location
+        move(pieces);
     }
 
     // IVAN ARMENTA and ANDRE MELENDEZ

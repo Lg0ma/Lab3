@@ -25,6 +25,7 @@ public class chessPiece {
         this.row = row;
     }
 
+    // method to get the type of object
     public chess_piece_type getType(){
         return piece_name;
     }
