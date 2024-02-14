@@ -12,6 +12,8 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
         chessPiece [] pieces= prompt(); // array used to store the chess piece objects array
         // method prompt to move the chess pieces to a new location
         move(pieces);
+        // close the Scanner
+        scnr.close();
     }
 
     // IVAN ARMENTA and ANDRE MELENDEZ
@@ -93,36 +95,50 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
     // Luis Gomez
     // traverses the array and asks for new position to try to move piece into
     public static void move(chessPiece[] chessPieces) {
+        // initialize the index variable, and the variables to store the user input
         int i = 0;
         String[] user_input;
         String newMove;
+        // prompt the user to input a location to move all chess pieces to
         System.out.println("Input a new position for the pieces to try to move to. Input 'stop to end program .... ");
+        // store the user input
         newMove = scnr.nextLine();
-        // if the usrs input is 'stop' 
+        // if the users input is 'stop' 
          if (newMove.toUpperCase().equals("STOP")) {
               // end the program
             System.exit(0);
-        }                                                                                         
+        }                    
+        // split the users input at the',' and any whitespace                                                                     
         user_input = newMove.split(",\\s*");
+        // tyr catch blocks to handle any errors
         try {
+            //  convert the users input for the x-coordinate into an enum
             chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
+            // convert the users input for the y-coordinate into an integer
             int row = Integer.parseInt(user_input[1]);
-            while(i < chessPieces.length){
+            // while loop to traverse the chessPiece array
+            while(i < chessPieces.length) {
                 chessPiece currPiece = chessPieces[i];
+                // if the new position is valid
                 if (chessPieces[i].verifyTarget(col, row) == true) {
+                    // let the user know the chess piece was moved here
                     System.out.println("Piece " + currPiece.getType() + " was able to move successfully to " + col + "," + row);
+                    // increment through the index
                     i++;
-                    
-                }else{
+                }
+                // otherwise, the chess piece cannot move to the new location
+                else {
+                    // let the user know that the chess piece cannot move to the new location
                     System.out.println("Piece " + currPiece.getType() +" was not able to move to " + col + "," + row);
+                    // increment through the index
                     i++;
                 }
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Invalid input try again!");
             move(chessPieces);
         }
-        
     }
-    }
+}
