@@ -3,104 +3,113 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 // main class
-public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism{
-private static Scanner scnr = new Scanner(System.in);
-//hello
+public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
+    private static Scanner scnr = new Scanner(System.in);
+    // hello
 
     // everyone used this
     public static void main(String[] args) {
-        chess_piece_type [] pieceTypes = prompt(); //Array used to store only user piece types
-        chessPiece [] chessPieces; // Array taht will be used to hold ches pieces as objects
-        chessPieces = secondPrompt(pieceTypes); //Updating array with user pieces now as objects
-        move(chessPieces); //
+        chessPiece [] pieces= prompt(); // array used to store the chess piece objects array returned from the method call
+        move(pieces); // method call to move the chess pieces to a new position
     }
 
-    // Ivan Armenta
-    public static chess_piece_type [] prompt() {
-        chess_piece_type [] type = new chess_piece_type[6]; //enum array used to hold user input
-        String typeInput = "";
-        int i = 0; //counter for array 
-        for(i = 0; !typeInput.equalsIgnoreCase("stop") && i < 6; i++){ //Loop to populate type array
-            try{
-                System.out.println("Select a chess piece: PAWN, ROOK, BISHOP, KNIGHT, QUEEN, KING \n\"Stop\" to continue to chess piece attributes");
-                typeInput = scnr.nextLine().toUpperCase(); 
-
-                type[i] = chess_piece_type.valueOf(typeInput); //Putting user input into enum array
-
-                //Loop to check for duplicates
-                for(int count = 0; count < i; count++) {
-                    if(type[count] == type[i]){
-                        System.out.println("Duplicate");
-                        i--;
-                    }
-                    else{
-                        type[i] = chess_piece_type.valueOf(typeInput);
+    // IVAN ARMENTA and ANDRE MELENDEZ
+    // method to prompt the user to create chess pieces and store the newly created objects
+    public static chessPiece[] prompt() {
+        // initialize an empty chessPiece array to hold the chess piece objects
+        chessPiece pieces[] = new chessPiece[6];
+        // for loop to create the chess pieces and store them in an array
+        for (int count = 0; count < 6; count++) {
+            // try catch block for errors
+            try {
+                // print to prompt the user to input a chess piece with a position
+                System.out.println("Input a chess piece with its initial position. Can only input a chess piece once. E.G. Pawn, White, H, 3. Input 'stop' to end the program ... ");
+                System.out.println("");
+                // store the users input in a String
+                String user_input = scnr.nextLine().toUpperCase();
+                // if the user inputted 'stop'
+                if (user_input.equals("STOP")) {
+                    // end the program
+                    System.exit(0);
+                }
+                // split the users input by the white-space and comma and store in a String array
+                String[] user_info = user_input.split(",\\s*");
+                // for loop to traverse the number of chess pieces created
+                for (int idx = 0; idx < count; idx++) {
+                    // if the users inputted chess piece already exists in the pieces array
+                    if (chess_piece_type.valueOf(user_info[0]) == pieces[idx].getType()) {
+                        // let the user know
+                        System.out.println("The inputted chess piece already exists, please input a non-existing chess piece ...");
+                        System.out.println("");
+                        // decrement count since the chess piece was invalid
+                        count--; 
+                        // break to loop back up the method
+                        break;
                     }
                 }
-            //Exception if user inputs something wrong
-            }
-            catch(Exception e){
-                System.out.println("Wrong input try again");
-                i--;
+                // check if the users inputted initial position is within range of the chessboard
+                if (!chessboard.withinChessboard(chess_piece_columns.valueOf(user_info[2]), Integer.parseInt(user_info[3]))) {
+                    // let the user know that the inputted position is not within range
+                    System.out.println("User input for starting position is out of range ... ");
+                    System.out.println("");
+                    // decrementcount since the chess piece was invalid
+                    count--;
+                    // loop back up to prompt the user again
+                    continue;
+                }
+                // create variables to hold the users inputs to create the object
+                chess_piece_type type = chess_piece_type.valueOf(user_info[0]);
+                chess_piece_color color = chess_piece_color.valueOf(user_info[1]);
+                chess_piece_columns x_coord = chess_piece_columns.valueOf(user_info[2]);
+                int y_coord = Integer.parseInt(user_info[3]);
+                // create the object using the users inputs and store in the pieces array
+                pieces[count] = chessPiece.create_chess_piece(type, color, x_coord, y_coord);
+                // let the user know that the chess piece was create
+                System.out.println("The " + type + " chess piece has been successfully created ...");
+                System.out.println("");
+            } 
+            catch (Exception e) {
+                System.out.println("Invalid input, try again ...");
+                System.out.println("");
+                // decrement count since the users input was invalid
+                count--;
             }
         }
-        return type;
+        // return the array of pieces
+        return pieces;
     }
-
-    
 
     // Luis Gomez
-    // takes array of type that user input and asks for more info to create the piece
-    // checks that initial position is within bounds
-    public static chessPiece[] secondPrompt(chess_piece_type [] piece_type){
-        chessPiece [] newChesspieces = new chessPiece[piece_type.length];
-        String [] user_input;
-        String piece_info;
-        int i = 0;
-        while (i < piece_type.length){
-            try{
-            System.out.println("Please input "+ piece_type[i] + "'s Color, Coloumn, and row EX: BLACK, A, 3");
-            piece_info = scnr.nextLine();
-            user_input = piece_info.split(",\\s*");
-            int row = Integer.parseInt(user_input[2]);
-            if(chessboard.withinChessboard((chess_piece_columns.valueOf(user_input[1].toUpperCase())), row) == true){
-                System.out.println("Move is valid ");
-            newChesspieces[i] = chessPiece.create_chess_piece(piece_type[i],(chess_piece_color.valueOf(user_input[0].toUpperCase())),(chess_piece_columns.valueOf(user_input[1].toUpperCase())),row);
-            i++;
-            }
-        }catch(Exception e){
-            System.out.println("Invalid input try again");
-        }
-        }
-        return newChesspieces;
-    }
-
-    //Luis Gomez
     // traverses the array and asks for new position to try to move piece into
-    public static void move(chessPiece [] chessPieces){
+    public static void move(chessPiece[] chessPieces) {
         int i = 0;
-        String [] user_input;
+        String[] user_input;
         String newMove;
-        while(i < chessPieces.length){
-            try{
-            System.out.println("Input new position to Move " + chessPieces[i].getType() + " at " + chessPieces[i].getColumn() + "," + chessPieces[i].getRow() + " to. EX: A, 3");
-            newMove = scnr.nextLine();
-            user_input = newMove.split(",\\s*");
-            chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
-            int row = Integer.parseInt(user_input[1]);
-            if(chessPieces[i].verifyTarget(col, row) == true){
-                System.out.println("Piece " + chessPieces[i].getType() + " was successfuly moved to "+ col +" " + row );
-                i++;
-            }else{
-                System.out.println("Piece "  + " was not able to move to " + col + " "+ row);
-                i++;
-            }
-            }catch(Exception e){
+        while (i < chessPieces.length) {
+            try {
+                System.out.println("Input new position to Move " + chessPieces[i].getType() + " at "
+                        + chessPieces[i].getColumn() + "," + chessPieces[i].getRow() + " to. EX: A, 3");
+                newMove = scnr.nextLine();
+                // if the usrs input is 'stop' 
+                if (newMove.toUpperCase().equals("STOP")) {
+                    // end the program
+                    System.exit(0);
+                }
+                user_input = newMove.split(",\\s*");
+                chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
+                int row = Integer.parseInt(user_input[1]);
+                if (chessPieces[i].verifyTarget(col, row) == true) {
+                    System.out.println(
+                            "Piece " + chessPieces[i].getType() + " was successfuly moved to " + col + " " + row);
+                    i++;
+                } else {
+                    System.out.println("Piece " + " was not able to move to " + col + " " + row);
+                    i++;
+                }
+            } catch (Exception e) {
                 System.out.println("Invalid input try again");
             }
         }
     }
 
-    
-    
 }
