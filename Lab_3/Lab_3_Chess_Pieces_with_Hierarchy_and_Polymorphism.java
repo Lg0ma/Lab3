@@ -100,11 +100,11 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
             while(i < chessPieces.length){
                 chessPiece currPiece = chessPieces[i];
                 if (chessPieces[i].verifyTarget(col, row) == true) {
-                    System.out.println("Piece " + currPiece.getType() + " at " + currPiece.getColumn() + "," + currPiece.getRow() + " was able to move successfully to " + col + "," + row);
+                    System.out.println("Piece " + currPiece.getType() + " was able to move successfully to " + col + "," + row);
                     i++;
                     
                 }else{
-                    System.out.println("Piece " + currPiece.getType() + " at " + currPiece.getColumn() + "," + currPiece.getRow() +" was not able to move to " + col + "," + row);
+                    System.out.println("Piece " + currPiece.getType() +" was not able to move to " + col + "," + row);
                     i++;
                 }
             }
