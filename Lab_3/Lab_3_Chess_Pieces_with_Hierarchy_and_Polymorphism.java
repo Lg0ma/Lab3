@@ -115,5 +115,3 @@ public class Lab_3_Chess_Pieces_with_Hierarchy_and_Polymorphism {
         
         }
     }
-
-
