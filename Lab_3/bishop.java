@@ -13,10 +13,6 @@ class bishop extends chessPiece {
         super(name, color, x_coord, y_coord);
     }
 
-    public chess_piece_type getType(){
-        return piece_name;
-    }
-
     // method to verify its piece movement
     @Override
     public Boolean verifyTarget(chess_piece_columns column, int row) {
