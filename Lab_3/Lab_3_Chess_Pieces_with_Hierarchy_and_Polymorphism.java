@@ -83,7 +83,7 @@ private static Scanner scnr = new Scanner(System.in);
         String newMove;
         while(i < chessPieces.length){
             try{
-            System.out.println("Input new position to Move " + chessPieces[i].getType() + " to EX: A, 3");
+            System.out.println("Input new position to Move " + chessPieces[i].getType() + " at " + chessPieces[i].getColumn() + "," + chessPieces[i].getRow() + " to. EX: A, 3");
             newMove = scnr.nextLine();
             user_input = newMove.split(",\\s*");
             chess_piece_columns col = chess_piece_columns.valueOf(user_input[0].toUpperCase());
